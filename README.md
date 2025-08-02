@@ -1,21 +1,27 @@
-# About tport
+# Vulnerability Labs
 
-Tport is a Multi Threaded Port Scanner designed in python. It helps to scan open ports of an IP. Tport uses the python module threading to make port scan faster. This tool is still in its development phase , many features are yet to be added. 
+This is a deliberately vulnerable Flask web application for practicing web security testing. The labs roughly correspond to the OWASP Top 10 categories and include intentionally insecure code examples.
 
-# Installation 
-           git clone https://github.com/roger737/tport.git
+## Installation
 
+```bash
+pip install -r requirements.txt
+python app.py
+```
 
-# Usage
+Visit `http://127.0.0.1:5000` to view the list of labs.
 
-Tport has 4 scan modes:
-            
-            Mode 1: Scans all common ports from 1 to 1024
-            Mode 2: Scans ports in the range of 1 to 49152
-            Mode 3: Scans basic common ports like 20, 21, 22, 23, 25, 53, 80, 110, 443
-            Mode 4: Scans custom ports specified by a user
-            
-            
-# Version
+## Included Labs
 
-The current version is 1.0
+- Broken Access Control (`/broken_access/login?role=admin`)
+- Cryptographic Failures (`/crypto/login`)
+- SQL Injection (`/sqli?id=1`)
+- Insecure Design (`/redirect?url=http://example.com`)
+- Security Misconfiguration (`/config/env`)
+- Vulnerable and Outdated Components (`/components`)
+- Identification and Authentication Failures (`/auth/login`)
+- Software and Data Integrity Failures (`/pickle/load`)
+- Security Logging and Monitoring Failures (`/logging/login`)
+- Server-Side Request Forgery (`/ssrf?url=http://example.com`)
+
+The application is simplified for educational use and does not cover the full OWASP Web Security Testing Guide checklist.
