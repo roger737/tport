@@ -1,0 +1,8 @@
+<!doctype html>
+<title>Vulnerable Flask Labs</title>
+<h1>Vulnerable Flask Labs</h1>
+<ul>
+{% for lab in labs %}
+  <li><a href="/lab/{{ lab.endpoint }}">{{ lab.name }}</a></li>
+{% endfor %}
+</ul>

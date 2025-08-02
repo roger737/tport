@@ -1,0 +1,11 @@
+<!doctype html>
+<title>XSS Lab</title>
+<h1>XSS Lab</h1>
+<p>Difficulty level: {{ level }}</p>
+<form method="post">
+  <input name="comment" placeholder="Leave a comment">
+  <button type="submit">Submit</button>
+</form>
+{% if comment %}
+<p>Your comment: {{ comment|safe }}</p>
+{% endif %}
