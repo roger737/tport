@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h2>Audit {{ audit.id }} - {{ audit.title }}</h2>
+  <p>{{ audit.description }}</p>
+  <p class="meta">
+    <span class="badge severity-{{ audit.severity|lower }}">{{ audit.severity }}</span>
+    <span class="badge status-{{ audit.status|lower }}">{{ audit.status }}</span>
+    <span class="badge">{{ audit.source }}</span>
+    {% if audit.assigned_team %}<span class="badge">{{ audit.assigned_team }}</span>{% endif %}
+  </p>
+</div>
+
+{% if can_edit %}
+<div class="grid">
+  <div class="card">
+    <h3>Update Status</h3>
+    <form method="post">
+      {{ status_form.hidden_tag() }}
+      <div class="form-group">{{ status_form.status.label }} {{ status_form.status() }}</div>
+      {{ status_form.submit() }}
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Add Comment</h3>
+    <form method="post">
+      {{ comment_form.hidden_tag() }}
+      <div class="form-group">{{ comment_form.content.label }} {{ comment_form.content(rows=3) }}</div>
+      {{ comment_form.submit() }}
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Add Finding</h3>
+    <form method="post">
+      {{ finding_form.hidden_tag() }}
+      <div class="form-group">{{ finding_form.title.label }} {{ finding_form.title() }}</div>
+      <div class="form-group">{{ finding_form.description.label }} {{ finding_form.description(rows=3) }}</div>
+      <div class="form-group">{{ finding_form.severity.label }} {{ finding_form.severity() }}</div>
+      <div class="form-group">{{ finding_form.status.label }} {{ finding_form.status() }}</div>
+      {{ finding_form.submit() }}
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Upload Attachment</h3>
+    <form method="post" enctype="multipart/form-data">
+      {{ attach_form.hidden_tag() }}
+      <div class="form-group">{{ attach_form.file.label }} {{ attach_form.file() }}</div>
+      {{ attach_form.submit() }}
+    </form>
+  </div>
+</div>
+{% endif %}
+
+<div class="grid">
+  <div class="card">
+    <h3>Findings</h3>
+    <ul class="item-list">
+      {% for f in audit.findings %}
+        <li>{{ f.title }} - <span class="badge severity-{{ f.severity|lower }}">{{ f.severity }}</span> - <span class="badge status-{{ f.status|lower }}">{{ f.status }}</span></li>
+      {% else %}
+        <li>No findings.</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Attachments</h3>
+    <ul class="item-list">
+      {% for a in audit.attachments %}
+        <li><a href="{{ url_for('audit.attachment', attachment_id=a.id) }}">{{ a.filename }}</a></li>
+      {% else %}
+        <li>No attachments.</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Comments</h3>
+    <ul class="item-list">
+      {% for c in audit.comments %}
+        <li><strong>{{ c.user.username }}</strong> <small>{{ c.created_at }}</small><br>{{ c.content }}</li>
+      {% else %}
+        <li>No comments.</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Audit Log</h3>
+    <ul class="item-list">
+      {% for l in audit.logs %}
+        <li>{{ l.created_at }} - {{ l.user.username }}: {{ l.action }}</li>
+      {% else %}
+        <li>No log entries.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

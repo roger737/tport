@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-hero card">
+  <h1>Audit Overview</h1>
+  <p>{{ total }} audits tracked across all teams.</p>
+  <a class="btn" href="{{ url_for('audit.list_audits') }}">View All Audits</a>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <h2>{{ status_counts['Open'] }}</h2>
+    <p>Open</p>
+  </div>
+  <div class="stat-card">
+    <h2>{{ status_counts['Verified'] }}</h2>
+    <p>Verified</p>
+  </div>
+  <div class="stat-card">
+    <h2>{{ status_counts['Mitigated'] }}</h2>
+    <p>Mitigated</p>
+  </div>
+  <div class="stat-card">
+    <h2>{{ status_counts['Closed'] }}</h2>
+    <p>Closed</p>
+  </div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <h2>{{ severity_counts['Low'] }}</h2>
+    <p>Low Severity</p>
+  </div>
+  <div class="stat-card">
+    <h2>{{ severity_counts['Medium'] }}</h2>
+    <p>Medium Severity</p>
+  </div>
+  <div class="stat-card">
+    <h2>{{ severity_counts['High'] }}</h2>
+    <p>High Severity</p>
+  </div>
+  <div class="stat-card">
+    <h2>{{ severity_counts['Critical'] }}</h2>
+    <p>Critical Severity</p>
+  </div>
+</div>
+{% endblock %}
