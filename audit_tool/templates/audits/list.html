@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h2>Audits</h2>
+  <a class="btn" href="/audit/create">Create Audit</a>
+
+  <form method="get">
+    <div class="form-group">
+      <label>Severity
+        <select name="severity">
+          <option value="">All</option>
+          {% for s in ['Low','Medium','High','Critical'] %}
+            <option value="{{ s }}" {% if request.args.severity==s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Risk
+        <select name="risk">
+          <option value="">All</option>
+          {% for r in risks %}
+            <option value="{{ r.name }}" {% if request.args.risk==r.name %}selected{% endif %}>{{ r.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    </div>
+    <button type="submit">Filter</button>
+  </form>
+
+  <table>
+    <tr><th>ID</th><th>Title</th><th>Severity</th><th>Status</th></tr>
+    {% for audit in audits %}
+      <tr>
+        <td>{{ audit.id }}</td>
+        <td><a href="/audit/{{ audit.id }}">{{ audit.title }}</a></td>
+        <td>{{ audit.severity }}</td>
+        <td>{{ audit.status }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

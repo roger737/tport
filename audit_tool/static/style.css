@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #333;
+}
+
+nav {
+  background: #2c3e50;
+  color: #fff;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: #fff;
+  margin-right: 1em;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 2em auto;
+}
+
+.card {
+  background: #fff;
+  padding: 1.5em;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 1.5em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.5em 0.75em;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #f0f0f0;
+  text-align: left;
+}
+
+form .form-group {
+  margin-bottom: 1em;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.25em;
+  font-weight: bold;
+}
+
+form input[type=text], form select, form textarea, form input[type=password], form input[type=file] {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button, input[type=submit], .btn {
+  background: #2c3e50;
+  color: #fff;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover, input[type=submit]:hover, .btn:hover {
+  background: #1a242f;
+}
+
+.flash {
+  padding: 0.75em 1em;
+  border-radius: 4px;
+  margin-bottom: 1em;
+}
+
+.flash-success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.flash-error {
+  background: #f8d7da;
+  color: #721c24;
+}
